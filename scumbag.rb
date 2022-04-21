@@ -5,7 +5,6 @@ require_relative 'pronouns'
 
 include Tracery
 
-
 def get_story(scumbag, gender)
   grammar = createGrammar(
     indefinite_victim: File.readlines('./data/indefinite_victims.txt').map(&:chomp),
@@ -32,11 +31,12 @@ def get_story(scumbag, gender)
       'borrowed #victim.pos# #object_phys# and never gave it back'
     ],
 
-    story: 'I heard $scumbag$ once #action#.'
+    story: "I heard #{scumbag} once #action#."
   )
   grammar.addModifiers(Modifiers.baseEngModifiers)
   grammar.addModifiers(Modifiers.possessiveModifiers)
   grammar.addModifiers(Modifiers.pronounModifiers)
   root = grammar.expand('#story#')
-  return root.finishedText.gsub('$scumbag$', scumbag)
+
+  return root.finishedText
 end
