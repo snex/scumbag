@@ -7,13 +7,20 @@ include Tracery
 
 def get_story(scumbag, gender)
   grammar = createGrammar(
+    collection: File.readlines('./data/collections.txt').map(&:chomp),
+    pathetic_adjective: File.readlines('./data/pathetic_adjectives.txt').map(&:chomp),
+
     indefinite_victim: File.readlines('./data/indefinite_victims.txt').map(&:chomp),
     definite_victim: File.readlines('./data/definite_victims.txt').map(&:chomp).map do |v|
       v.gsub('$pronoun$', "#.pronoun(#{gender},pos)#")
     end,
+
     victim: [
       '#definite_victim#',
-      '#indefinite_victim.a#'
+      '#indefinite_victim.a#',
+      '#pathetic_adjective.a# #indefinite_victim#',
+      '#collection.a# full of #indefinite_victim.s#',
+      '#collection.a# full of #pathetic_adjective# #indefinite_victim.s#'
     ],
 
     victim_verb: File.readlines('./data/victim_verbs.txt').map(&:chomp),
