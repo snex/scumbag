@@ -42,7 +42,8 @@ def get_story(scumbag, gender)
       '#victim_verb# #victim#',
       '#verb_phys# #victim.pos# #object_phys#',
       '#verb_nonphys# #victim.pos# #object_nonphys#',
-      'borrowed #victim.pos# #object_phys# and never gave it back'
+      'borrowed #victim.pos# #object_phys# and never gave it back',
+      "promised to buy #{rand(10..100)} #object_phys.s# from #victim# but then never paid"
     ],
 
     story: "I heard #{scumbag} once #action#."
