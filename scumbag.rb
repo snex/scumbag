@@ -1,15 +1,24 @@
 require 'tracery'
 require 'mods-eng-basic'
+require_relative 'possessive'
+require_relative 'pronouns'
 
 include Tracery
 
-def get_story(subject)
+
+def get_story(scumbag, gender)
   grammar = createGrammar(
-    victim: [
+    indefinite_victim: [
       'girl scout',
-      'his own mother',
       'little old lady',
       'puppy'
+    ],
+    definite_victim: [
+      "#.pronoun(#{gender},pos)# own mother",
+    ],
+    victim: [
+      '#definite_victim#',
+      '#indefinite_victim.a#'
     ],
 
     victim_verb: [
@@ -22,12 +31,14 @@ def get_story(subject)
 
     verb_phys: [
       'broke',
+      'keyed',
       'smashed',
       'stole',
       'took'
     ],
     object_phys: [
       'bicycle',
+      'car',
       'lunch money'
     ],
 
@@ -42,15 +53,17 @@ def get_story(subject)
     ],
 
     action: [
-      '#victim_verb# #victim.a#',
-      '#verb_phys# #victim.a#\'s #object_phys#',
-      '#verb_nonphys# #victim.a#\'s #object_nonphys#',
-      'borrowed #victim.a#\'s #object_phys# and never gave it back'
+      '#victim_verb# #victim#',
+      '#verb_phys# #victim.pos# #object_phys#',
+      '#verb_nonphys# #victim.pos# #object_nonphys#',
+      'borrowed #victim.pos# #object_phys# and never gave it back'
     ],
 
-    story: 'I heard $subject$ once #action#.'
+    story: 'I heard $scumbag$ once #action#.'
   )
   grammar.addModifiers(Modifiers.baseEngModifiers)
+  grammar.addModifiers(Modifiers.possessiveModifiers)
+  grammar.addModifiers(Modifiers.pronounModifiers)
   root = grammar.expand('#story#')
-  return root.finishedText.gsub('$subject$', subject)
+  return root.finishedText.gsub('$scumbag$', scumbag)
 end
