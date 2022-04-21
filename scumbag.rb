@@ -8,49 +8,22 @@ include Tracery
 
 def get_story(scumbag, gender)
   grammar = createGrammar(
-    indefinite_victim: [
-      'girl scout',
-      'little old lady',
-      'puppy'
-    ],
-    definite_victim: [
-      "#.pronoun(#{gender},pos)# own mother",
-    ],
+    indefinite_victim: File.readlines('./data/indefinite_victims.txt').map(&:chomp),
+    definite_victim: File.readlines('./data/definite_victims.txt').map(&:chomp).map do |v|
+      v.gsub('$pronoun$', "#.pronoun(#{gender},pos)#")
+    end,
     victim: [
       '#definite_victim#',
       '#indefinite_victim.a#'
     ],
 
-    victim_verb: [
-      'kicked',
-      'punched',
-      'scammed',
-      'shoved',
-      'stole from'
-    ],
+    victim_verb: File.readlines('./data/victim_verbs.txt').map(&:chomp),
 
-    verb_phys: [
-      'broke',
-      'keyed',
-      'smashed',
-      'stole',
-      'took'
-    ],
-    object_phys: [
-      'bicycle',
-      'car',
-      'lunch money'
-    ],
+    verb_phys: File.readlines('./data/physical_verbs.txt').map(&:chomp),
+    verb_nonphys: File.readlines('./data/non_physical_verbs.txt').map(&:chomp),
 
-    verb_nonphys: [
-      'disliked',
-      'insulted',
-      'wrote a disparaging Tweet about'
-    ],
-    object_nonphys: [
-      'physical deformity',
-      'YouTube video'
-    ],
+    object_phys: File.readlines('./data/physical_objects.txt').map(&:chomp),
+    object_nonphys: File.readlines('./data/non_physical_objects.txt').map(&:chomp),
 
     action: [
       '#victim_verb# #victim#',
