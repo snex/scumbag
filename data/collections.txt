@@ -1,4 +1,6 @@
 bus
 city
 orphanage
+planet
+room
 town
