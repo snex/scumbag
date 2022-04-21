@@ -5,3 +5,4 @@ indigent
 mentally disabled
 poor
 sick
+suicidal
