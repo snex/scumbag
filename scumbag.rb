@@ -25,7 +25,9 @@ def get_story(scumbag, gender)
     victim: [
       '#definite_victim#',
       '#indefinite_victim.a#',
-      '#pathetic_adjective.a# #indefinite_victim#',
+      '#pathetic_adjective.a# #indefinite_victim#'
+    ],
+    victim_collection: [
       '#collection.a# full of #indefinite_victim.s#',
       '#collection.a# full of #pathetic_adjective# #indefinite_victim.s#'
     ],
@@ -40,9 +42,17 @@ def get_story(scumbag, gender)
 
     action: [
       '#victim_verb# #victim#',
+      '#victim_verb# #victim_collection#',
+
       '#verb_phys# #victim.pos# #object_phys#',
+      '#verb_phys# #victim_collection.pos# #object_phys.s#',
+
       '#verb_nonphys# #victim.pos# #object_nonphys#',
+      '#verb_nonphys# #victim_collection.pos# #object_nonphys.s#',
+
       'borrowed #victim.pos# #object_phys# and never gave it back',
+      'borrowed #victim_collection.pos# #object_phys.s# and never gave them back',
+
       "promised to buy #{rand(10..100)} #object_phys.s# from #victim# but then never paid"
     ],
 
