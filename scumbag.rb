@@ -1,9 +1,16 @@
 require 'tracery'
 require 'mods-eng-basic'
+require_relative 'plural'
 require_relative 'possessive'
 require_relative 'pronouns'
 
 include Tracery
+
+def load_file(filename)
+  File.readlines("./data/#{filename}.txt").map(&:chomp).reject do |line|
+    line[0] == '#'
+  end
+end
 
 def get_story(scumbag, gender)
   grammar = createGrammar(
