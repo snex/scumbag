@@ -17,9 +17,13 @@ def get_story(scumbag, gender)
     unsourced_start:  load_file('unsourced_starts'),
     sourced_start:    load_file('sourced_starts'),
     reputable_source: load_file('reputable_sources'),
-    story_start: [
+
+    unsourced_story_start: [
       '#unsourced_start#',
-      '#unsourced_start# that',
+      '#unsourced_start# that'
+    ],
+    story_start: [
+      '#unsourced_story_start#',
       '#sourced_start# #reputable_source# that',
     ],
 
