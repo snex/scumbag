@@ -14,6 +14,15 @@ end
 
 def get_story(scumbag, gender)
   grammar = createGrammar(
+    unsourced_start:  load_file('unsourced_starts'),
+    sourced_start:    load_file('sourced_starts'),
+    reputable_source: load_file('reputable_sources'),
+    story_start: [
+      '#unsourced_start#',
+      '#unsourced_start# that',
+      '#sourced_start# #reputable_source# that',
+    ],
+
     collection:         load_file('collections'),
     pathetic_adjective: load_file('pathetic_adjectives'),
 
@@ -90,7 +99,7 @@ def get_story(scumbag, gender)
       'tried to sell #bad_thing# to #indifferent_victim#'
     ],
 
-    story: "I heard #{scumbag} #action#."
+    story: "#story_start# #{scumbag} #action#."
   )
   grammar.addModifiers(Modifiers.baseEngModifiers)
   grammar.addModifiers(Modifiers.possessiveModifiers)
