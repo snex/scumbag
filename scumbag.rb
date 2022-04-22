@@ -17,6 +17,11 @@ def get_story(scumbag, gender)
     collection:         load_file('collections'),
     pathetic_adjective: load_file('pathetic_adjectives'),
 
+    bad_guy:            load_file('bad_guys'),
+    friendly_verb:      load_file('friendly_verbs').map do |v|
+      v.gsub('$pronoun$', "#.pronoun(#{gender},sub)#")
+    end,
+
     indefinite_victim: load_file('indefinite_victims'),
     definite_victim:   load_file('definite_victims').map do |v|
       v.gsub('$pronoun$', "#.pronoun(#{gender},pos)#")
@@ -35,7 +40,9 @@ def get_story(scumbag, gender)
       '#victim#', '#victim_collection#'
     ],
 
-    victim_verb: load_file('victim_verbs'),
+    modifiable_victim_verb:   load_file('modifiable_victim_verbs'),
+    unmodifiable_victim_verb: load_file('unmodifiable_victim_verbs'),
+    victim_verb_modifier:     load_file('victim_verb_modifiers'),
 
     verb_phys:    load_file('physical_verbs'),
     verb_nonphys: load_file('non_physical_verbs'),
@@ -57,14 +64,18 @@ def get_story(scumbag, gender)
     ],
 
     action: [
-      '#victim_verb# #indifferent_victim#',
+      '#modifiable_victim_verb# #indifferent_victim# #victim_verb_modifier#',
+      '#modifiable_victim_verb# #indifferent_victim#',
+      '#unmodifiable_victim_verb# #indifferent_victim#',
 
       '#transitive_action#',
 
       'borrowed #victim.pos# #object_phys# and never gave it back',
       'borrowed #victim_collection.pos# #object_phys.s# and never gave them back',
 
-      "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid"
+      "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid",
+
+      '#friendly_verb# #bad_guy#'
     ],
 
     story: "I heard #{scumbag} once #action#."
