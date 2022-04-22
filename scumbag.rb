@@ -6,9 +6,11 @@ require_relative 'pronouns'
 
 include Tracery
 
-def load_file(filename)
+def load_file(filename, gender = 'none', pronoun_type = 'none')
   File.readlines("./data/#{filename}.txt").map(&:chomp).reject do |line|
     line[0] == '#'
+  end.map do |line|
+    line.gsub('$pronoun$', "#.pronoun(#{gender},#{pronoun_type})#")
   end
 end
 
@@ -36,16 +38,12 @@ def get_story(scumbag, gender)
       '#definite_bad_guy#',
       '#indefinite_bad_guy.a#',
     ],
-    friendly_verb:      load_file('friendly_verbs').map do |v|
-      v.gsub('$pronoun$', "#.pronoun(#{gender},sub)#")
-    end,
+    friendly_verb:      load_file('friendly_verbs', gender, 'sub'),
 
     bad_thing: load_file('bad_things'),
 
     indefinite_victim: load_file('indefinite_victims'),
-    definite_victim:   load_file('definite_victims').map do |v|
-      v.gsub('$pronoun$', "#.pronoun(#{gender},pos)#")
-    end,
+    definite_victim:   load_file('definite_victims', gender, 'pos'),
 
     victim: [
       '#definite_victim#',
