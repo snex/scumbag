@@ -52,7 +52,8 @@ def get_story(scumbag, gender)
       '#collection.a# full of #pathetic_adjective# #indefinite_victim.s#'
     ],
     indifferent_victim: [
-      '#victim#', '#victim_collection#'
+      '#victim#',
+      '#victim_collection#'
     ],
 
     modifiable_victim_verb:   load_file('modifiable_victim_verbs'),
@@ -63,6 +64,7 @@ def get_story(scumbag, gender)
       '#modifiable_victim_verb# #indifferent_victim# #victim_verb_modifier#',
       '#modifiable_victim_verb# #indifferent_victim#',
       '#unmodifiable_victim_verb# #indifferent_victim#',
+      'made #indifferent_victim# cry',
     ],
 
     verb_phys:    load_file('physical_verbs'),
@@ -91,15 +93,10 @@ def get_story(scumbag, gender)
 
     action: [
       '#intransitive_action#',
-
       '#transitive_action#',
-
       '#borrowed_action#',
-
       "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid",
-
       '#friendly_verb# #bad_guy#',
-
       'tried to sell #bad_thing# to #indifferent_victim#'
     ],
 
