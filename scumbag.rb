@@ -94,13 +94,17 @@ def get_story(scumbag, gender)
       'borrowed #victim_collection.pos# #object_phys.s# and never gave them back'
     ],
 
+    celebratory_verb: load_file('celebratory_verbs', gender, 'sub'),
+    bad_event:        load_file('bad_events'),
+
     action: [
       '#intransitive_action#',
       '#transitive_action#',
       '#borrowed_action#',
       "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid",
       '#friendly_verb# #bad_guy#',
-      'tried to sell #bad_thing# to #indifferent_victim#'
+      'tried to sell #bad_thing# to #indifferent_victim#',
+      '#celebratory_verb# #bad_event#'
     ],
 
     story: "#story_start# #{scumbag} #action#."
