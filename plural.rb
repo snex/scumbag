@@ -4,14 +4,14 @@ module Modifiers
     alias_method :orig_pluralize, :pluralize
 
     def pluralize(s)
-      if s == 'child'
+      return case s
+      when 'child'
         return 'children'
-      end
-      if s == 'life savings'
+      when 'life savings', 'lunch money'
         return s
+      else
+        orig_pluralize(s)
       end
-
-      orig_pluralize(s)
     end
   end
 end
