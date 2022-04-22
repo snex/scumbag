@@ -78,7 +78,7 @@ def get_story(scumbag, gender)
       '#friendly_verb# #bad_guy#'
     ],
 
-    story: "I heard #{scumbag} once #action#."
+    story: "I heard #{scumbag} #action#."
   )
   grammar.addModifiers(Modifiers.baseEngModifiers)
   grammar.addModifiers(Modifiers.possessiveModifiers)
