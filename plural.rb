@@ -7,6 +7,9 @@ module Modifiers
       if s == 'child'
         return 'children'
       end
+      if s == 'life savings'
+        return s
+      end
 
       orig_pluralize(s)
     end
