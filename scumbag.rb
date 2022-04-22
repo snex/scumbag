@@ -46,6 +46,12 @@ def get_story(scumbag, gender)
     unmodifiable_victim_verb: load_file('unmodifiable_victim_verbs'),
     victim_verb_modifier:     load_file('victim_verb_modifiers'),
 
+    intransitive_action: [
+      '#modifiable_victim_verb# #indifferent_victim# #victim_verb_modifier#',
+      '#modifiable_victim_verb# #indifferent_victim#',
+      '#unmodifiable_victim_verb# #indifferent_victim#',
+    ],
+
     verb_phys:    load_file('physical_verbs'),
     verb_nonphys: load_file('non_physical_verbs'),
 
@@ -65,15 +71,17 @@ def get_story(scumbag, gender)
       '#plural_transitive_action#'
     ],
 
+    borrowed_action: [
+      'borrowed #victim.pos# #object_phys# and never gave it back',
+      'borrowed #victim_collection.pos# #object_phys.s# and never gave them back'
+    ],
+
     action: [
-      '#modifiable_victim_verb# #indifferent_victim# #victim_verb_modifier#',
-      '#modifiable_victim_verb# #indifferent_victim#',
-      '#unmodifiable_victim_verb# #indifferent_victim#',
+      '#intransitive_action#',
 
       '#transitive_action#',
 
-      'borrowed #victim.pos# #object_phys# and never gave it back',
-      'borrowed #victim_collection.pos# #object_phys.s# and never gave them back',
+      '#borrowed_action#',
 
       "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid",
 
