@@ -30,7 +30,12 @@ def get_story(scumbag, gender)
     collection:         load_file('collections'),
     pathetic_adjective: load_file('pathetic_adjectives'),
 
-    bad_guy:            load_file('bad_guys'),
+    definite_bad_guy:   load_file('definite_bad_guys'),
+    indefinite_bad_guy: load_file('indefinite_bad_guys'),
+    bad_guy: [
+      '#definite_bad_guy#',
+      '#indefinite_bad_guy.a#',
+    ],
     friendly_verb:      load_file('friendly_verbs').map do |v|
       v.gsub('$pronoun$', "#.pronoun(#{gender},sub)#")
     end,
