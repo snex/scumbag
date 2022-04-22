@@ -97,6 +97,8 @@ def get_story(scumbag, gender)
     celebratory_verb: load_file('celebratory_verbs', gender, 'sub'),
     bad_event:        load_file('bad_events'),
 
+    artwork: load_file('stories'),
+
     action: [
       '#intransitive_action#',
       '#transitive_action#',
@@ -104,7 +106,8 @@ def get_story(scumbag, gender)
       "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid",
       '#friendly_verb# #bad_guy#',
       'tried to sell #bad_thing# to #indifferent_victim#',
-      '#celebratory_verb# #bad_event#'
+      '#celebratory_verb# #bad_event#',
+      'spoiled the ending to #artwork#'
     ],
 
     story: "#story_start# #{scumbag} #action#."
