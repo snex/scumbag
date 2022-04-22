@@ -48,8 +48,8 @@ def get_story(scumbag, gender)
       '#verb_nonphys# #victim.pos# #object_nonphys#'
     ],
     plural_transitive_action: [
-      '#verb_phys# #victim.pos# #object_phys.s#',
-      '#verb_nonphys# #victim.pos# #object_nonphys.s#'
+      '#verb_phys# #indifferent_victim.pos# #object_phys.s#',
+      '#verb_nonphys# #indifferent_victim.pos# #object_nonphys.s#'
     ],
     transitive_action: [
       '#singular_transitive_action#',
