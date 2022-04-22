@@ -22,6 +22,8 @@ def get_story(scumbag, gender)
       v.gsub('$pronoun$', "#.pronoun(#{gender},sub)#")
     end,
 
+    bad_thing: load_file('bad_things'),
+
     indefinite_victim: load_file('indefinite_victims'),
     definite_victim:   load_file('definite_victims').map do |v|
       v.gsub('$pronoun$', "#.pronoun(#{gender},pos)#")
@@ -75,7 +77,9 @@ def get_story(scumbag, gender)
 
       "promised to buy #{rand(10..100)} #object_phys.s# from #indifferent_victim# but then never paid",
 
-      '#friendly_verb# #bad_guy#'
+      '#friendly_verb# #bad_guy#',
+
+      'tried to sell #bad_thing# to #indifferent_victim#'
     ],
 
     story: "I heard #{scumbag} #action#."

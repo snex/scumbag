@@ -3,4 +3,5 @@ city
 orphanage
 planet
 room
+school
 town
