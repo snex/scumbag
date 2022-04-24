@@ -99,6 +99,9 @@ def get_story(scumbag, gender)
 
     artwork: load_file('stories'),
 
+    bad_ingredient: load_file('bad_ingredients'),
+    good_food:      load_file('good_foods'),
+
     action: [
       '#intransitive_action#',
       '#transitive_action#',
@@ -107,7 +110,8 @@ def get_story(scumbag, gender)
       '#friendly_verb# #bad_guy#',
       'tried to sell #bad_thing# to #indifferent_victim#',
       '#celebratory_verb# #bad_event#',
-      'spoiled the ending to #artwork#'
+      'spoiled the ending to #artwork#',
+      'puts #bad_ingredient# on #good_food#'
     ],
 
     story: "#story_start# #{scumbag} #action#."
