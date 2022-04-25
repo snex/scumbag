@@ -1,4 +1,5 @@
 dim sum
 hot dogs
 pizza
+steak
 sushi
